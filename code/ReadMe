@@ -1,0 +1,27 @@
+# 🔐 Offline Password Manager (Kivy)
+
+This is a simple yet secure offline password manager app built using **Python** and **Kivy**. It allows users to store, view, and manage their passwords locally on their desktop — with encryption for privacy and security.
+
+---
+
+## 🚀 Features
+
+- 🎨 Clean and modern user interface using Kivy
+- 🔐 AES encryption for password storage (Fernet from `cryptography`)
+- 💾 Data stored locally in `data.json`
+- 🗝️ Secure key handling via `master.key` and `secret.key`
+- 👁️ Passwords can be viewed in a read-only format
+- 💻 Runs completely offline
+
+---
+
+## 📁 Files Included
+
+| File | Description |
+|------|-------------|
+| `main.py` | Main Python script with logic and screen handling |
+| `main.kv` | Kivy layout and styling file |
+| `data.json` | Stores the encrypted password entries |
+| `master.key` | Master key for encryption/decryption |
+| `secret.key` | Additional key for layered security |
+| `main.spec` | PyInstaller configuration (for `.exe` build) |
