@@ -1,0 +1,281 @@
+<Create_password>
+    canvas.before:
+        Color:
+            rgba: 0.580, 0.953, 0.922, 0.4
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        MDLabel:
+            id: label01
+            text: "Create Your Password"
+            halign: "center"
+            font_style: "H4"
+            theme_text_color: "Custom"
+            text_color: 0.0549, 0.9804, 0.9647, 0.8
+
+        MDTextField:
+            id: new_pass
+            hint_text: "Enter New Password"
+            password: True
+            on_text_validate: root.create()
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDRaisedButton:
+            text: "Create Password"
+            on_press: root.create()
+            md_bg_color: 0.051, 1.0, 0.0, 0.8
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+<Login>
+    canvas.before:
+        Color:
+            rgba: 0.580, 0.953, 0.922, 0.4
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        padding: 50
+        spacing: 30
+        orientation: 'vertical'
+
+        MDLabel:
+            id: label02
+            text: "Enter Your Password"
+            halign: "center"
+            font_style: "H4"
+            theme_text_color: "Custom"
+            text_color: 0.0549, 0.9804, 0.9647, 0.8
+
+        MDTextField:
+            id: passb
+            hint_text: "Password"
+            password: True
+            on_text_validate: root.login()
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDRaisedButton:
+            text: "Login"
+            on_press: root.login()
+            md_bg_color: 0.051, 1.0, 0.0, 0.8
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+<Manage_Password>
+    canvas.before:
+        Color:
+            rgba: 0.420, 0.918, 0.855, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 40
+        size_hint_y: None
+        height: self.minimum_height
+        pos_hint: {"center_y": 0.5}
+
+        MDRaisedButton:
+            text: "View Password"
+            on_press: app.root.get_screen("view").on_enter()
+            md_bg_color: 0, 0.863, 0.486, 1
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Add Password"
+            on_press: app.root.get_screen("insert").add_password()
+            md_bg_color: 0.024, 0.510, 0.580, 1
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Leave"
+            on_press: app.stop()
+            md_bg_color: 1, 0, 0, 1
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+<Insert_password>
+    canvas.before:
+        Color:
+            rgba: 0.580, 0.953, 0.922, 0.4
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 50
+        spacing: 30
+
+        MDLabel:
+            id: label03
+            text: "Add Your Password"
+            halign: "center"
+            font_style: "H5"
+
+        MDTextField:
+            id: web_name
+            hint_text: "Enter Website Name"
+            on_text_validate: root.save_password()
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDTextField:
+            id: user_name
+            hint_text: "Enter User Name"
+            on_text_validate: root.save_password()
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDTextField:
+            id: web_pass
+            hint_text: "Enter Password"
+            on_text_validate: root.save_password()
+            password: True
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDRaisedButton:
+            text: "Save Password"
+            on_press: root.save_password()
+            md_bg_color: 0.165, 0.949, 0.149, 0.9
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+        MDRaisedButton:
+            text: "Back"
+            on_press: root.back()
+            md_bg_color: 0, 0.133, 0.831, 0.87
+            size_hint_x: 0.8
+            height: "70dp"
+            font_size: "20sp"
+            pos_hint: {"center_x": 0.5}
+
+<View_password>
+    canvas.before:
+        Color:
+            rgba: 0, 1, 0.918, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "60dp"
+            spacing: 10
+
+            MDTextField:
+                id: search_bar
+                hint_text: "Search website..."
+                on_text: root.filter_passwords(self.text)
+                mode: "rectangle"
+                size_hint_x: 1
+
+            MDRaisedButton:
+                text: "Back"
+                on_release: root.manager.current = 'manage'
+                md_bg_color: 0, 0.188, 1, 1
+                size_hint_x: None
+                width: "100dp"
+                height: "60dp"
+
+        ScrollView:
+            GridLayout:
+                id: password_grid
+                cols: 1
+                spacing: 10
+                adaptive_height: True
+                size_hint_y: 1
+                height: self.minimum_height
+
+<edit_password>
+    canvas.before:
+        Color:
+            rgba: 0.420, 0.918, 0.855, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [15,]
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: 40
+        spacing: 30
+
+        MDLabel:
+            id: label04
+            text: "Edit Password"
+            halign: "center"
+            font_style: "H4"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0, 1
+
+        MDTextField:
+            id: website
+            hint_text: "Website"
+            text: ""
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDTextField:
+            id: username
+            hint_text: "Username"
+            text: ""
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDTextField:
+            id: password
+            hint_text: "Password"
+            text: ""
+            password: False
+            mode: "rectangle"
+            size_hint_x: 1
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "70dp"
+            spacing: 20
+
+            MDRaisedButton:
+                text: "Edit Password"
+                on_press: root.updatepass()
+                md_bg_color: 0.165, 0.949, 0.149, 0.9
+                size_hint_x: 0.5
+                font_size: "20sp"
+
+            MDRaisedButton:
+                text: "Back"
+                on_press: root.back()
+                md_bg_color: 0, 0.188, 1, 1
+                size_hint_x: 0.5
+                font_size: "20sp"
