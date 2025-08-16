@@ -289,7 +289,6 @@ class edit_password(MDScreen):
     def back(self):
         self.manager.current = 'view'
 class main(MDApp):
-    Window.icon = "logo.ico"
     def build(self):
         sm = ScreenManager(transition=WipeTransition())
         sm.add_widget(Login(name="login"))
